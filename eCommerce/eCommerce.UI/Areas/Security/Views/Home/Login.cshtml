@@ -1,0 +1,31 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">Sign in With Social Media!</h3>
+                        <hr class="my-4">
+                        <a asp-area="Security" asp-controller="Home" asp-action="GoogleLogin" class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;">
+                            <i class="fab fa-google me-2"></i> Sign in with Google!
+                        </a>
+                        <hr class="my-4">
+                        <a asp-controller="Security" asp-action="FacebookLogin" class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;">
+                            <i class="fab fa-facebook-f me-2"></i>Sign in with Facebook!
+                        </a>
+                        <hr class="my-4">
+                        <a asp-controller="Security" asp-action="Auth0Login" class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;">
+                            <i class="fab fa-google me-2"></i> Sign in with Auth0!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<eCommerce.Models.Category>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using eCommerce.Models
+@{
+    ViewData["Title"] = "Products List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Welcome to eCommerce Categories</h1>
+
+
+<table class="table table-hover table-stripped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryDescription)
+            </th>
+            <th>Show Products</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+            </td>
+            <td>
+                    <a class="btn btn-primary" asp-area="Products" asp-controller="Home" asp-action="GetParticularCategoryProducts" asp-route-id="@item.CategoryId">Show Products</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

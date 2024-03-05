@@ -1,0 +1,235 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using eCommerce.Models
+@{
+    ViewData["Title"] = "Products List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Product Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       
+        
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #17a2b8;
+            }
+
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff;
+        }
+
+        .btn-amazon {
+            background-color: #FF9900;
+            color: #FFFFFF;
+            border: 1px solid #FF9900;
+        }
+
+            .btn-amazon:hover {
+                background-color: #FFCC00;
+                color: #333333;
+                border: 1px solid #FFCC00;
+            }
+
+        .btn-amazon-outline {
+            background-color: transparent;
+            color: #FF9900;
+            border: 1px solid #FF9900;
+        }
+
+            .btn-amazon-outline:hover {
+                background-color: #FF9900;
+                color: #FFFFFF;
+                border: 1px solid #FF9900;
+            }
+
+        .bottom-margin {
+            margin-bottom: 50px;
+        }
+
+        .image-container {
+            overflow: hidden;
+        }
+
+        .zoom {
+            transition: transform 0.5s; 
+        }
+
+            .zoom:hover {
+                transform: scale(1.1); 
+            }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-button {
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+        .quantity-container a{
+            margin : 10px;
+        }
+
+        .product-price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .discounted-price {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .original-price {
+            font-size: 18px;
+            text-decoration: line-through;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @* <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script> *@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function increaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+            quantityInput.value = currentQuantity + 1;
+        }
+
+        function decreaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+        }
+
+        // JavaScript to hide/show the dropdown based on screen width
+        $(document).ready(function () {
+            function toggleDropdown() {
+                if ($(window).width() < 800) {
+                    $('.row .col-md-4').hide();
+                    $('.dropdown').show();
+                } else {
+                    $('.row .col-md-4').show();
+                    $('.dropdown').hide();
+                }
+            }
+
+            // Initial toggle on page load
+            toggleDropdown();
+
+            // Toggle on window resize
+            $(window).on('resize', function () {
+                toggleDropdown();
+            });
+        });
+    </script>
+</head>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="display-3">@ViewBag.PageTitle @Model.ProductName</h1>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Main Image Column (Half Page Width) -->
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="@Url.Content(@Model.Picture)" alt="Product Image" class="img-fluid img-thumbnail zoom" style="width: 100%; height: auto;">
+            </div>
+
+            <!-- Mini-Images Column (Below Main Image) -->
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@Url.Content(@Model.Picture)" alt="Mini Image 1" class="img-thumbnail zoom mini-image mb-2">
+                </div>
+                <div class="col-md-4">
+                    <img src="@Url.Content(@Model.Picture)" alt="Mini Image 1" class="img-thumbnail zoom mini-image mb-2">
+                </div>
+                <div class="col-md-4">
+                    <img src="@Url.Content(@Model.Picture)" alt="Mini Image 1" class="img-thumbnail zoom mini-image mb-2">
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Product Details Column (Right Half Page Width) -->
+        <div class="col-md-6 mb-20">
+            <h2>@Model.ProductName</h2>
+            <p class="text-muted">Category: Footwear</p>
+            <p>@Model.Description Lorem ipsum dolor sit amet consectetur, adipisicing elit. leerci Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quo enim, debitis veritatis ducimus veniam laboriosam rem sed temporibus libero reiciendis qui doloribus quas explicabo minima, quasi optio ullam iusto illo voluptas assumenda laudantium nisi soluta! Iste veritatis aliquid odit, officiis nulla dicta eligendi? Minus magnam quod quam, beatae voluptatibus ut assumenda ipsum tenetur dicta quaerat quidem qui blanditiis, consequuntur velit architecto. Consequatur molestiae ipsum impedit modi. Reiciendis quia laborum natus ipsam dicta reprehenderit quo incidunt dolores asperiores fugiat voluptatem temporibus debitis labore, beatae eveniet dolorum eos repellat eius magnam blanditiis, possimus ullam. Officia architecto necessitatibus perspiciatis, odit, harum accusantium repellendus voluptates ipsa deleniti ea delectus obcaecati dolorum enim magnam suscipit aperiam cum provident eveniet sapiente, velit nisi neque temporibus. tibulum mi.</p>
+            <form>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="size-1" name="size">
+                    <label class="custom-control-label" for="size-1">XS</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="size-2" name="size">
+                    <label class="custom-control-label" for="size-2">S</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="size-3" name="size">
+                    <label class="custom-control-label" for="size-3">M</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="size-4" name="size">
+                    <label class="custom-control-label" for="size-4">L</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="size-5" name="size">
+                    <label class="custom-control-label" for="size-5">XL</label>
+                </div>
+            </form>
+            <div class="product-price">
+                <span class="discounted-price text-success">Price : $@ViewBag.Discount</span>
+                <span class="original-price text-muted">$@Model.UnitPrice</span>
+            </div>
+ 
+
+            
+            <div class="text-center quantity-container flex-row">
+                    <button class="quantity-button " onclick="decreaseQuantity()">-</button>
+                    <input type="text" class="quantity-input" value="1" id="quantity">
+                    <button class="quantity-button" onclick="increaseQuantity()">+</button>
+                
+                <a class="btn btn-amazon btn-lg mb-20" asp-area="Products" asp-controller="Home"
+                   asp-action="Details" asp-route-id="@Model.ProductId">Buy Now</a>
+                <a class="btn btn-amazon-outline btn-lg mb-20" asp-area="Carts" asp-controller="Home"
+                   asp-action="AddToCart" asp-route-id=@Model.ProductId >Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>

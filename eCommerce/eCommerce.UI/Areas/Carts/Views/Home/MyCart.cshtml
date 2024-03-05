@@ -1,0 +1,137 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using eCommerce.Models
+@model IEnumerable<MyCartVM>
+@{
+    ViewData["Title"] = "My Cart!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<style>
+    /* Custom styles for centering and dark border */
+    .center-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width : 300px;
+    }
+
+    .dark-border {
+        border: 2px solid #333;
+        border-radius: 10px;
+        padding: 15px; /* Add padding for better visual appearance */
+        display: inline-block; /* Make it inline block to fit content width */
+        
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="text-center">
+    <h1 class="display-2">Your Cart Details</h1>
+</div>
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Discounted Price</th>
+                <th>Size</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @foreach (var myCart in Model)
+        {
+            <tr class="h-100">
+                <td >
+                    <img src="@Url.Content(myCart.Picture)" class="card-img-top " alt="@myCart.ProductName" height="100">
+                </td>
+                <td>
+                    @myCart.ProductName
+                </td>
+                <td>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </td>
+
+
+                <td>
+                    @myCart.CartDate
+                </td>
+                <td>
+                    @myCart.UnitPrice
+                </td>
+                <td>
+                    @myCart.DiscountedAmount
+                </td>
+                <td>
+                    <select class="form-control">
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </td>
+                <td>
+                    <button>
+                    <a  asp-area="Carts" asp-controller="Home" asp-action="Delete" asp-route-id="@myCart.CartDetailId" > 
+                            <i class="fa fa-trash-o" style="font-size:24px;color:red"></i>
+                    </a>
+                    </button>
+                </td>
+                    
+
+            </tr>
+        }
+    </table>
+    <div class="center-text dark-border">
+        <div class="col-md-6 text-right">
+            <h6 class="text-center">Total Amount:</h6>
+            <h3 class="text-success">@{
+                    double total = 0;
+                    foreach(var myCart in Model)
+                    {
+                        total += myCart.UnitPrice * myCart.Quantity;
+                    }
+                    <h3 class="text-success text-center">INR: @total</h3>
+                }
+            </h3>
+        </div>
+       @*  <div class="text-center mt-4">
+            <button class="btn btn-success">Proceed to Payment</button>
+        </div> *@
+        <form action="Carts/Home/CreateCheckoutSession" method="POST">
+            <div class="card-footer border-secondary bg-transparent">
+                <div class="d-flex justify-content-between mt-2">
+                    <h5 class="font-weight-bold">Total</h5>
+                    <h5 class="font-weight-bold">@Model.Sum(item => item.TotalAmount)</h5>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success my-3 py-3" id="checkout-button">
+                Proceed To Checkout
+            </button>
+        </form>
+        <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_NUTuG8uaVhFKtB" async> </script> </form>
+    </div>
+     
+    <!-- End of checkout content -->
+
+
+</div>
+    </div>

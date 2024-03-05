@@ -1,0 +1,11 @@
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\bin\Debug\net6.0\eCommerce.Models.deps.json
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\bin\Debug\net6.0\eCommerce.Models.dll
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\bin\Debug\net6.0\eCommerce.Models.pdb
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.AssemblyInfoInputs.cache
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.AssemblyInfo.cs
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.csproj.CoreCompileInputs.cache
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.dll
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\refint\eCommerce.Models.dll
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\eCommerce.Models.pdb
+D:\Bajaj training\ASP.NET\eCommerce\eCommerce.Models\obj\Debug\net6.0\ref\eCommerce.Models.dll
